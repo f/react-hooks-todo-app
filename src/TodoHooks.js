@@ -1,5 +1,12 @@
 import { addTodo, completeTodo } from "./TodoService";
 
+// useTodos is a simple function that gets `useState` output
+// as the only parameter.
+// This allows to manage a state.
+// ```
+// const todos = useTodos(useState())
+// ```
+// will make the `todos` variable a state manager.
 export function useTodos([todos, setTodos]) {
   return {
     todos,
