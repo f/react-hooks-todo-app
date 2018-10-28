@@ -1,7 +1,8 @@
 {
-  "name": "react-usecontext-todo-app",
+  "name": "react-todo-app-hooks-and-context",
+  "private": true,
   "version": "1.0.0",
-  "description": "React useContext and useState Composition",
+  "description": "A highly testable TodoList app that uses React hooks and Context.",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
