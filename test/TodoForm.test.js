@@ -7,7 +7,7 @@ import TodoForm from "../src/components/TodoForm";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-test("<TodoForm/> #addTodo", async () => {
+test("<TodoForm /> #addTodo", async () => {
   const addTodo = jest.fn();
   const form = mount(
     <TodoContext.Provider value={{ addTodo }}>
