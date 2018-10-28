@@ -4,8 +4,8 @@ import ReactDOM from "react-dom";
 import { useTodos } from "./TodoHooks";
 
 import TodoContext from "./TodoContext";
-import TodoList from "./TodoList";
-import TodoForm from "./TodoForm";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
 
 function App() {
   const todos = useTodos(useState(useContext(TodoContext)));

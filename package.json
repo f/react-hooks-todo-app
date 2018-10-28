@@ -5,6 +5,8 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "1.6.0",
     "react": "next",
     "react-dom": "next",
     "react-scripts": "2.0.3"
