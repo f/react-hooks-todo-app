@@ -6,7 +6,7 @@ export default function TodoForm() {
 
   // Creating a local state to have currently writing
   // todo item that will be sent to the global store.
-  const [todo, setTodo] = useState();
+  const [todo, setTodo] = useState("");
 
   function handleTodoChange(e) {
     setTodo(e.target.value);
