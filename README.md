@@ -23,7 +23,9 @@ For better approaches please open Pull Requests
 
 ## Summary
 
-1. **Context**: The main approach was to get rid off Redux and use **React Contexts** instead. With the composition of `useState`, `useContext` I created a global state. And passed it into a **custom hook** called `useTodos`. `useTodos` curries `useState` output and generates a state manager which will be passed into `TodoContext.Provider` to be used as a global state.
+### 1. **Context**:
+
+The main approach was to get rid off Redux and use **React Contexts** instead. With the composition of `useState`, `useContext` I created a global state. And passed it into a **custom hook** called `useTodos`. `useTodos` curries `useState` output and generates a state manager which will be passed into `TodoContext.Provider` to be used as a global state.
 
 ```jsx
 function App() {
@@ -43,7 +45,9 @@ function App() {
 }
 ```
 
-2. **The Reducer**: The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
+### 2. **The Reducer**:
+
+The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
 
 ```js
 // Reducer is the classical reducer that we know from Redux.
@@ -66,7 +70,9 @@ export default function reducer(state, action) {
 }
 ```
 
-3. I reach out **state and dispathcer** of context using `useContext` and I can reach to the `actions`.
+3. **state and dispatcher**
+
+I reach out **state and dispathcer** of context using `useContext` and I can reach to the `actions`.
 
 ```js
 import React, { useContext } from "react";
@@ -78,7 +84,9 @@ export default function TodoForm() {
   // use `dispatch({ type: 'ADD_TODO', payload: 'Buy milk' })`
 ```
 
-4. **Persistence with custom hooks**: I created custom hooks to persist state on `localStorage`
+4. **Persistence with custom hooks**:
+
+I created custom hooks to persist state on `localStorage`
 
 ```js
 // Accepts `useContext` as first parameter and returns cached context.
