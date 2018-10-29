@@ -1,15 +1,21 @@
 # React Hooks Todo App
 
+> A trial to achieve a correct approach. Tryinh to get **rid off using Redux**, make **contexts more useful** and make components **"easy-to-test simple functions"**.
+
 [![Edit react-usecontext-todo-app](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/f/react-hooks-todo-app/tree/master/)
+
+---
 
 A **highly decoupled**, **testable** TodoList app that uses React hooks.
 
 This is a training repo to learn about new hooks feature of React and creating a testable environment.
 
-- No class components
-- Uses `Context` to share a global state
+- **No** class components
+- Uses `Context` to share a **global state** and the **state actions**
 - `useState` to create local state
-- Uses Jest + Enzyme for tests
+- Custom hook
+- Decoupled state logic (service)
+- Testable components (Uses Jest + Enzyme for tests)
 
 For better approaches please open Pull Requests
 
