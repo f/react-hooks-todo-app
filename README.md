@@ -89,6 +89,8 @@ export default function TodoForm() {
 I created custom hooks to persist state on `localStorage`
 
 ```js
+import { useEffect } from "react";
+
 // Accepts `useContext` as first parameter and returns cached context.
 export function usePersistedContext(context, key = "state") {
   const persistedContext = localStorage.getItem(key);
@@ -97,7 +99,7 @@ export function usePersistedContext(context, key = "state") {
 
 // Accepts `useReducer` as first parameter and returns cached reducer.
 export function usePersistedReducer([state, dispatch], key = "state") {
-  localStorage.setItem(key, JSON.stringify(state));
+  useEffect(() => localStorage.setItem(key, JSON.stringify(state)), [state]);
   return [state, dispatch];
 }
 ```
