@@ -39,10 +39,10 @@ function App() {
 }
 ```
 
-2. **The Service**: The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
+2. **The Actions**: The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
 
 ```js
-// Service is a simple and immutable functional state manager.
+// Actions is a simple and immutable functional state manager.
 // This functions must be highly testable that doesn't have any state.
 export function addTodo(todos, todo) {
   return [...todos, todo];

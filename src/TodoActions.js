@@ -1,4 +1,4 @@
-// Service is a simple and immutable functional state manager.
+// Actions is a simple and immutable functional state manager.
 // This functions must be highly testable that doesn't have any state.
 export function addTodo(todos, todo) {
   return [...todos, todo];

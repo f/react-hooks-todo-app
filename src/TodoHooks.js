@@ -1,4 +1,4 @@
-import { addTodo, completeTodo } from "./TodoService";
+import { addTodo, completeTodo } from "./TodoActions";
 
 // useTodos is a simple function that gets `useState` output
 // as the only parameter.
