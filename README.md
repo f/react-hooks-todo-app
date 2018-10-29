@@ -1,6 +1,6 @@
 # React Hooks Todo App
 
-> A trial to achieve a correct approach. Trying to get **rid off using Redux**, make **contexts more useful** and make components **"easy-to-test simple functions"**.
+> A trial to achieve a correct approach. Trying to get **rid off using Redux**, make **contexts more useful** with **useReducer** and make components **"easy-to-test simple functions"**.
 
 [![Edit react-usecontext-todo-app](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/f/react-hooks-todo-app/tree/master/)
 
@@ -11,9 +11,9 @@ A **highly decoupled**, **testable** TodoList app that uses React hooks.
 This is a training repo to learn about new hooks feature of React and creating a testable environment.
 
 - **No** class components
-- Uses `Context` to share a **global state** and the **state actions**
+- Uses `Context` to share a **global state**
+- Uses `useReducer` to manage **state actions**
 - `useState` to create local state
-- Custom hook
 - Decoupled state logic (Actions)
 - Testable components (Uses Jest + Enzyme for tests)
 
@@ -25,60 +25,56 @@ For better approaches please open Pull Requests
 
 ```jsx
 function App() {
+  // create a global store to store the state
+  const globalStore = useContext(Store);
+
   // `todos` will be a state manager to manage state.
-  const todos = useTodos(useState(useContext(TodoContext)));
+  const [state, dispatch] = useReducer(reducer, globalStore);
+
   return (
-    // Providing `useTodos(useState(useContext)))` combination
-    // output as the current context which become
-    // actually a state manager.
-    <TodoContext.Provider value={todos}>
+    // State.Provider passes the state and dispatcher to the down
+    <Store.Provider value={{ state, dispatch }}>
       <TodoList />
       <TodoForm />
-    </TodoContext.Provider>
+    </Store.Provider>
   );
 }
 ```
 
-2. **The Actions**: The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
+2. **The Reducer**: The second approach was to seperate the main logic, just as the **actions** of Redux. But these are fully functional, every function returns whole state.
 
 ```js
-// Actions is a simple and immutable functional state manager.
-// This functions must be highly testable that doesn't have any state.
-export function addTodo(todos, todo) {
-  return [...todos, todo];
-}
-
-// Naive implementation to make it work.
-export function completeTodo(todos, todo) {
-  return todos.filter(t => t !== todo);
+// Reducer is the classical reducer that we know from Redux.
+// used by `useReducer`
+export default function reducer(state, action) {
+  switch (action.type) {
+    case "ADD_TODO":
+      return {
+        ...state,
+        todos: [...state.todos, action.payload]
+      };
+    case "COMPLETE":
+      return {
+        ...state,
+        todos: state.todos.filter(t => t !== action.payload)
+      };
+    default:
+      return state;
+  }
 }
 ```
 
-3. **`useTodos` Hook**: The third approach is to generate a custom hook that manages the `state`. It's basically a **state composer** that includes functions to manage state with the help of **the actions**.
-
-```js
-export function useTodos([todos, setTodos]) {
-  return {
-    todos,
-    addTodo: todo => setTodos(addTodo(todos, todo)),
-    completeTodo: todo => setTodos(completeTodo(todos, todo))
-  };
-}
-```
-
-4. I reach out **actions** of context using `useContext` and I can reach to the `useTodos` methods.
+3. I reach out **state and dispathcer** of context using `useContext` and I can reach to the `actions`.
 
 ```js
 import React, { useContext, useState } from "react";
-import TodoContext from "../TodoContext";
+import Store from "../context";
 
 export default function TodoForm() {
-  // addTodo is the useTodos->addTodo
-  const { addTodo } = useContext(TodoContext);
-  ...
+  const { state, dispatcher } = useContext(Store);
+  // use `state.todos` to get todos
+  // use `dispatcher({ type: 'ADD_TODO', payload: 'Buy milk' })`
 ```
-
-So, the **addTodo** basically runs the action and mutates the state.
 
 5. **Everything is testable decoupled**: The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
 

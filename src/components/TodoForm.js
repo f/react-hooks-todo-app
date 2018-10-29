@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import TodoContext from "../TodoContext";
+import Store from "../context";
 
 export default function TodoForm() {
-  const { addTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(Store);
 
   // Creating a local state to have currently writing
   // todo item that will be sent to the global store.
@@ -13,7 +13,7 @@ export default function TodoForm() {
   }
 
   function handleTodoAdd() {
-    addTodo(todo);
+    dispatch({ type: "ADD_TODO", payload: todo });
     setTodo("");
   }
 
