@@ -14,9 +14,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, globalStore);
 
   return (
-    // Providing `useTodos(useState(useContext)))` combination
-    // output as the current context which become
-    // actually a state manager.
+    // State.Provider passes the state and dispatcher to the down
     <Store.Provider value={{ state, dispatch }}>
       <TodoList />
       <TodoForm />
