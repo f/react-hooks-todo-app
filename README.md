@@ -1,6 +1,6 @@
 # React Hooks Todo App
 
-> A trial to achieve a correct approach. Tryinh to get **rid off using Redux**, make **contexts more useful** and make components **"easy-to-test simple functions"**.
+> A trial to achieve a correct approach. Trying to get **rid off using Redux**, make **contexts more useful** and make components **"easy-to-test simple functions"**.
 
 [![Edit react-usecontext-todo-app](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/f/react-hooks-todo-app/tree/master/)
 
