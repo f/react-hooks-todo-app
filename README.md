@@ -54,7 +54,7 @@ export function completeTodo(todos, todo) {
 }
 ```
 
-3. **`useTodos` Hook**: The third approach is to generate a custom hook that manages the `state`. It's basically a **state composer** that includes functions to manage state with the help of **the service**.
+3. **`useTodos` Hook**: The third approach is to generate a custom hook that manages the `state`. It's basically a **state composer** that includes functions to manage state with the help of **the actions**.
 
 ```js
 export function useTodos([todos, setTodos]) {
@@ -77,7 +77,7 @@ export default function TodoForm() {
   ...
 ```
 
-So, the **addTodo** basically runs the service and mutates the state.
+So, the **addTodo** basically runs the action and mutates the state.
 
 5. **Everything is testable decoupled**: The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
 
