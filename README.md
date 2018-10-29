@@ -17,6 +17,7 @@ This is a training repo to learn about new hooks feature of React and creating a
 - `useState` to create local state
 - Decoupled state logic (Actions)
 - Testable components (Uses Jest + Enzyme for tests)
+- Custom Hooks for **persisting state**.
 
 For better approaches please open Pull Requests
 
