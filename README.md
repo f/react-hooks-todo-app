@@ -14,7 +14,7 @@ This is a training repo to learn about new hooks feature of React and creating a
 - Uses `Context` to share a **global state** and the **state actions**
 - `useState` to create local state
 - Custom hook
-- Decoupled state logic (service)
+- Decoupled state logic (Actions)
 - Testable components (Uses Jest + Enzyme for tests)
 
 For better approaches please open Pull Requests
