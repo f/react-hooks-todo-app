@@ -1,15 +1,15 @@
-import { addTodo, completeTodo } from "../src/TodoService";
+import reducer from "../src/reducer";
 
 test("adds todo", async () => {
-  const todos = ["a"];
-  const newTodos = addTodo(todos, "b");
+  const state = { todos: ["a"] };
+  const newState = reducer(state, { type: "ADD_TODO", payload: "b" });
 
-  expect(newTodos).toEqual(["a", "b"]);
+  expect(newState.todos).toEqual(["a", "b"]);
 });
 
 test("completes todo", async () => {
-  const todos = ["a", "b"];
-  const newTodos = completeTodo(todos, "b");
+  const state = { todos: ["a", "b"] };
+  const newState = reducer(state, { type: "COMPLETE", payload: "b" });
 
-  expect(newTodos).toEqual(["a"]);
+  expect(newState.todos).toEqual(["a"]);
 });

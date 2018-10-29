@@ -3,7 +3,6 @@ import Store from "../context";
 
 export default function TodoList() {
   const { state, dispatch } = useContext(Store);
-  console.log(state);
 
   let header =
     state.todos.length === 0 ? (

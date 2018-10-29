@@ -2,19 +2,19 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import TodoContext from "../src/TodoContext";
-import * as svc from "../src/TodoService";
+import Store from "../src/context";
+import reducer from "../src/reducer";
 import TodoList from "../src/components/TodoList";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 test("<TodoList /> #display", async () => {
   const todos = ["a", "b", "c"];
-  const completeTodo = () => {};
+  const dispatch = () => {};
   const list = mount(
-    <TodoContext.Provider value={{ todos, completeTodo }}>
+    <Store.Provider value={{ state: { todos }, dispatch }}>
       <TodoList />
-    </TodoContext.Provider>
+    </Store.Provider>
   );
 
   expect(list.find("li").length).toEqual(3);
@@ -23,43 +23,43 @@ test("<TodoList /> #display", async () => {
       .find("li")
       .first()
       .html()
-  ).toEqual("<li>a<button>X</button></li>");
+  ).toEqual('<li>a<button style="margin-left: 10px;">Complete</button></li>');
   expect(
     list
       .find("li")
       .last()
       .html()
-  ).toEqual("<li>c<button>X</button></li>");
+  ).toEqual('<li>c<button style="margin-left: 10px;">Complete</button></li>');
 });
 
 test("<TodoList /> #completeCalls", async () => {
   const todos = ["a", "b", "c"];
-  const completeTodo = jest.fn();
+  const dispatch = jest.fn();
   const list = mount(
-    <TodoContext.Provider value={{ todos, completeTodo }}>
+    <Store.Provider value={{ state: { todos }, dispatch }}>
       <TodoList />
-    </TodoContext.Provider>
+    </Store.Provider>
   );
 
   list.find("button").forEach(b => b.simulate("click"));
-  expect(completeTodo.mock.calls.length).toBe(3);
+  expect(dispatch.mock.calls.length).toBe(3);
 });
 
 test("<TodoList /> #completeMutates", async () => {
-  let todos = ["a", "b", "c"];
-  const completeTodo = todo => {
-    todos = svc.completeTodo(todos, todo);
+  let state = { todos: ["a", "b", "c"] };
+  const dispatch = action => {
+    state = reducer(state, action);
   };
   const list = mount(
-    <TodoContext.Provider value={{ todos, completeTodo }}>
+    <Store.Provider value={{ state, dispatch }}>
       <TodoList />
-    </TodoContext.Provider>
+    </Store.Provider>
   );
 
   await list
     .find("button")
     .last()
     .simulate("click");
-  expect(todos.length).toBe(2);
-  expect(todos).toEqual(["a", "b"]);
+  expect(state.todos.length).toBe(2);
+  expect(state.todos).toEqual(["a", "b"]);
 });
