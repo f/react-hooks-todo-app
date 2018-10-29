@@ -70,7 +70,7 @@ export default function reducer(state, action) {
 }
 ```
 
-3. **state and dispatcher**
+### 3. **State and Dispatcher**
 
 I reach out **state and dispathcer** of context using `useContext` and I can reach to the `actions`.
 
@@ -84,7 +84,7 @@ export default function TodoForm() {
   // use `dispatch({ type: 'ADD_TODO', payload: 'Buy milk' })`
 ```
 
-4. **Persistence with custom hooks**:
+### 4. **Persistence with custom hooks**:
 
 I created custom hooks to persist state on `localStorage`
 
@@ -112,7 +112,9 @@ function App () {
   const [state, dispatch] = usePersistedReducer(useReducer(reducer, globalStore));
 ```
 
-5. **Everything is testable decoupled**: The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
+### 5. **Everything is testable decoupled**:
+
+The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
 
 ## License
 MIT
