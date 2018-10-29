@@ -78,6 +78,32 @@ export default function TodoForm() {
   // use `dispatch({ type: 'ADD_TODO', payload: 'Buy milk' })`
 ```
 
+4. **Persistence with custom hooks**: I created custom hooks to persist state on `localStorage`
+
+```js
+// Accepts `useContext` as first parameter and returns cached context.
+export function usePersistedContext(context, key = "state") {
+  const persistedContext = localStorage.getItem(key);
+  return persistedContext ? JSON.parse(persistedContext) : context;
+}
+
+// Accepts `useReducer` as first parameter and returns cached reducer.
+export function usePersistedReducer([state, dispatch], key = "state") {
+  localStorage.setItem(key, JSON.stringify(state));
+  return [state, dispatch];
+}
+```
+
+The `App` function will be:
+
+```js
+function App () {
+  const globalStore = usePersistedContext(useContext(Store));
+
+  // `todos` will be a state manager to manage state.
+  const [state, dispatch] = usePersistedReducer(useReducer(reducer, globalStore));
+```
+
 5. **Everything is testable decoupled**: The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
 
 ## License
