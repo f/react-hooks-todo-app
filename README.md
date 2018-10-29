@@ -73,6 +73,7 @@ import React, { useContext, useState } from "react";
 import TodoContext from "../TodoContext";
 
 export default function TodoForm() {
+  // addTodo is the useTodos->addTodo
   const { addTodo } = useContext(TodoContext);
   ...
 ```
