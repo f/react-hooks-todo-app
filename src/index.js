@@ -8,8 +8,11 @@ import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 
 function App() {
+  // create a global store to store the state
+  const globalStore = useState(useContext(TodoContext));
   // `todos` will be a state manager to manage state.
-  const todos = useTodos(useState(useContext(TodoContext)));
+  const todos = useTodos(globalStore);
+
   return (
     // Providing `useTodos(useState(useContext)))` combination
     // output as the current context which become
