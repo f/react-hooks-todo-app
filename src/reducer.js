@@ -1,6 +1,9 @@
 export default function reducer(state, action) {
   switch (action.type) {
     case "ADD_TODO":
+      if (!action.payload) {
+        return state;
+      }
       return {
         ...state,
         todos: [...state.todos, action.payload]
