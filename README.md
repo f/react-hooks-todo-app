@@ -67,13 +67,13 @@ export default function reducer(state, action) {
 3. I reach out **state and dispathcer** of context using `useContext` and I can reach to the `actions`.
 
 ```js
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Store from "../context";
 
 export default function TodoForm() {
-  const { state, dispatcher } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   // use `state.todos` to get todos
-  // use `dispatcher({ type: 'ADD_TODO', payload: 'Buy milk' })`
+  // use `dispatch({ type: 'ADD_TODO', payload: 'Buy milk' })`
 ```
 
 5. **Everything is testable decoupled**: The last but most important part of the approach is to make all the parts testable. They don't tie to eachother which makes me to write tests easily.
