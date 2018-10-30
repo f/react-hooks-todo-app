@@ -22,8 +22,9 @@ function App() {
   return (
     // State.Provider passes the state and dispatcher to the down
     <Store.Provider value={{ state, dispatch }}>
-      <TodoList />
       <TodoForm />
+      <TodoList />
+
     </Store.Provider>
   );
 }

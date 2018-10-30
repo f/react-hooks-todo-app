@@ -17,10 +17,22 @@ export default function TodoForm() {
     setTodo("");
   }
 
+  function handleSubmitForm(event) {
+    if (event.keyCode === 13)
+      handleTodoAdd();
+  }
+
   return (
-    <div>
-      <input value={todo} onChange={handleTodoChange} />
-      <button onClick={handleTodoAdd}>Add</button>
+    <div className="row">
+      <div className="col-md-12">
+      <br />
+        <div class="input-group">
+          <input className="form-control" value={todo} autoFocus={true} placeholder="Enter new todo" onKeyUp={handleSubmitForm} onChange={handleTodoChange} />
+          <div class="input-group-append">
+            <button className="btn btn-primary" onClick={handleTodoAdd}>Add</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
