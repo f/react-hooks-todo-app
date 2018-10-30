@@ -18,18 +18,26 @@ export default function TodoForm() {
   }
 
   function handleSubmitForm(event) {
-    if (event.keyCode === 13)
-      handleTodoAdd();
+    if (event.keyCode === 13) handleTodoAdd();
   }
 
   return (
     <div className="row">
       <div className="col-md-12">
-      <br />
-        <div class="input-group">
-          <input className="form-control" value={todo} autoFocus={true} placeholder="Enter new todo" onKeyUp={handleSubmitForm} onChange={handleTodoChange} />
+        <br />
+        <div className="input-group">
+          <input
+            className="form-control"
+            value={todo}
+            autoFocus={true}
+            placeholder="Enter new todo"
+            onKeyUp={handleSubmitForm}
+            onChange={handleTodoChange}
+          />
           <div class="input-group-append">
-            <button className="btn btn-primary" onClick={handleTodoAdd}>Add</button>
+            <button className="btn btn-primary" onClick={handleTodoAdd}>
+              Add
+            </button>
           </div>
         </div>
       </div>
