@@ -23,13 +23,17 @@ test("<TodoList /> #display", async () => {
       .find("li")
       .first()
       .html()
-  ).toEqual('<li>a<button style="margin-left: 10px;">Complete</button></li>');
+  ).toEqual(
+    '<li class="list-group-item">a<button class="float-right btn btn-danger btn-sm" style="margin-left: 10px;">Complete</button></li>'
+  );
   expect(
     list
       .find("li")
       .last()
       .html()
-  ).toEqual('<li>c<button style="margin-left: 10px;">Complete</button></li>');
+  ).toEqual(
+    '<li class="list-group-item">c<button class="float-right btn btn-danger btn-sm" style="margin-left: 10px;">Complete</button></li>'
+  );
 });
 
 test("<TodoList /> #completeCalls", async () => {

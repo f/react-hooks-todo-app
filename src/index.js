@@ -24,7 +24,6 @@ function App() {
     <Store.Provider value={{ state, dispatch }}>
       <TodoForm />
       <TodoList />
-
     </Store.Provider>
   );
 }
