@@ -34,7 +34,7 @@ export default function TodoForm() {
             onKeyUp={handleSubmitForm}
             onChange={handleTodoChange}
           />
-          <div class="input-group-append">
+          <div className="input-group-append">
             <button className="btn btn-primary" onClick={handleTodoAdd}>
               Add
             </button>
